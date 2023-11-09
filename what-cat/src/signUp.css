@@ -99,5 +99,9 @@
     color: #676767;
 }
 
+a:link { text-decoration: none; }
+button {
+    border: 0;
+}
 
 
