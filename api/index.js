@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 const express = require('express')
+const mongoose = require('mongoose')
 const catsRoutes = require('./routes/cats')
 const UserModel = require('./models/userModel')
 const userRoute = require('./routes/user')
@@ -17,11 +18,20 @@ app.use((req, res, next) => {
 })
 
 //routes
-app.use('/api/cats', catsRoutes)
+app.use('/cats', catsRoutes)
 app.use('/user', userRoute)
 
-//listen for requests
-app.listen(process.env.PORT, () => {
-    console.log("Server is running!!!", process.env.PORT)
+// connect to db
+mongoose.connect(process.env.MONGO_URI)
+.then (() => {
+    //listen for requests
+    app.listen(process.env.PORT, () => {
+    console.log("Connected to db & Server is running!!!", process.env.PORT)
 })
+})
+.catch ((error) => {
+    console.log(error)
+})
+
+
 

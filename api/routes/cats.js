@@ -1,4 +1,5 @@
 const express = require('express')
+const Cat = require('../models/catModel')
 
 const router = express.Router()
 
@@ -13,8 +14,15 @@ router.get('/:id', (req, res) => {
 })
 
 //POST a new cat
-router.post('/', (req, res) => {
-    res.json({mssg: 'POST a new cat'})
+router.post('/', async (req, res) => {
+    const {breed, origin, pattern} = req.body
+
+    try {
+        const cat = await Cat.create({breed, origin, pattern})
+        res.status(200).json(cat)
+    } catch(error) {
+        res.status(400).json({error: error.message})
+    }
 })
 
 //DELETE a cat
