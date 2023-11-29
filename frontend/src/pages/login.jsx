@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './signUp.css';
-import email from '../src/components/Assets/email_paw_wo_bg.png'
-import password from '../src/components/Assets/password_tin_wo_bg.png'
+import email from '../components/Assets/email_paw_wo_bg.png'
+import password from '../components/Assets/password_tin_wo_bg.png'
 
 
 function Login () {

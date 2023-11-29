@@ -1,38 +1,27 @@
 const express = require('express')
-const Cat = require('../models/catModel')
+const {
+    createCat,
+    getCats,
+    getCat,
+    deleteCat,
+    updateCat
+} = require('../controller/catController')
 
 const router = express.Router()
 
 //GET all cats
-router.get('/', (req, res) => {
-    res.json({mssg: 'GET all cats'})
-})
+router.get('/', getCats)
 
 //GET single cat
-router.get('/:id', (req, res) => {
-    res.json({mssg: 'GET a single cat'})
-})
+router.get('/:id', getCat)
 
 //POST a new cat
-router.post('/', async (req, res) => {
-    const {breed, origin, pattern} = req.body
-
-    try {
-        const cat = await Cat.create({breed, origin, pattern})
-        res.status(200).json(cat)
-    } catch(error) {
-        res.status(400).json({error: error.message})
-    }
-})
+router.post('/', createCat)
 
 //DELETE a cat
-router.delete('/:id', (req, res) => {
-    res.json({mssg: 'DELETE a cat'})
-})
+router.delete('/:id', deleteCat)
 
 // UPDATE a cat
-router.patch('/:id', (req, res) => {
-    res.json({mssg: 'UPDATE a cat'})
-})
+router.patch('/:id', updateCat)
 
 module.exports = router;
