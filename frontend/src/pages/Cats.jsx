@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import CatDetails from '../components/catDetails';
+import CatForm from '../components/CatForm';
 
 
 const Cats = () => {
@@ -24,6 +25,7 @@ const Cats = () => {
                     <CatDetails key = {cat._id} cat={cat}/> 
                 ))}
             </div>
+            <CatForm />
         </div>
     )
 }
