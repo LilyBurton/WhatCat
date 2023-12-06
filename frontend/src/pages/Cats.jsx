@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useCatsContext } from '../hook/useCatsContext';
 import CatDetails from '../components/catDetails';
 import CatForm from '../components/CatForm';
 
 
 const Cats = () => {
-    const [cats, setCats] = useState(null)
+    const {cats, dispatch} = useCatsContext()
 
     useEffect(() => {
         const fetchCats = async ()=> {
@@ -12,7 +13,7 @@ const Cats = () => {
             const json = await response.json()
 
             if(response.ok) {
-                setCats(json)
+               dispatch({type: 'SET_CATS', payload: json}) 
             }
         }
 

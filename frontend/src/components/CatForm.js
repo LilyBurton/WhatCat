@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import { useCatsContext } from '../hook/useCatsContext';
 
 const CatForm = () => {
+    const { dispatch } = useCatsContext();
+
     const [breed, setBreed] = useState('');
     const [origin, setOrigin] = useState('');
     const [pattern, setPattern] = useState('');
@@ -30,6 +33,7 @@ const CatForm = () => {
             setPattern('')
             setError(null)
             console.log('Mew Cat Added', json)
+            dispatch({type: 'CREATE_CAT', payload: json})
         }
     }
 
