@@ -12,6 +12,10 @@ export const catsReducer = (state, action) => {
             return {
                 cats: [action.payload, ...state.cats]
             }
+        case 'DELETE_CAT':
+            return {
+                cats: state.cats.filter((c) => c._id !== action.payload._id)
+            }
         default:
             return state
     }
