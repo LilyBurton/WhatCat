@@ -1,4 +1,5 @@
 import { useCatsContext } from "../hook/useCatsContext"
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 const CatDetails = ({ cat }) => {
     const { dispatch } = useCatsContext()
@@ -18,8 +19,8 @@ const CatDetails = ({ cat }) => {
             <h3>{cat.breed}</h3>
             <p><strong>Origin: </strong>{cat.origin}</p>
             <p><strong>Pattern: </strong>{cat.pattern}</p>
-            <p>{cat.createdAt}</p>
-            <span onClick={handleClick}>Delete</span>
+            <p>{formatDistanceToNow(new Date(cat.createdAt), { addSuffix: true })}</p>
+            <span className="material-symbols-outlined" onClick={handleClick}>Delete</span>
         </div>
     )
 }

@@ -8,6 +8,7 @@ const CatForm = () => {
     const [origin, setOrigin] = useState('');
     const [pattern, setPattern] = useState('');
     const [error, setError] = useState(null);
+    const [emptyFields, setEmptyFields] = useState([])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -25,6 +26,7 @@ const CatForm = () => {
 
         if(!response.ok) {
             setError(json.error)
+            setEmptyFields(json.emptyFields)
         }
 
         if(response.ok) {
@@ -32,6 +34,7 @@ const CatForm = () => {
             setOrigin('')
             setPattern('')
             setError(null)
+            setEmptyFields([])
             console.log('Mew Cat Added', json)
             dispatch({type: 'CREATE_CAT', payload: json})
         }
@@ -46,6 +49,7 @@ const CatForm = () => {
             type="text"
             onChange={(e) => setBreed(e.target.value)}
             value={breed}
+            className = {emptyFields.includes('breed') ? 'error': ''} 
             />
 
             <label>Origin: </label>
@@ -53,6 +57,7 @@ const CatForm = () => {
             type="text"
             onChange={(e) => setOrigin(e.target.value)}
             value={origin}
+            className = {emptyFields.includes('origin') ? 'error': ''} 
             />
 
             <label>Pattern: </label>
@@ -60,6 +65,7 @@ const CatForm = () => {
             type="text"
             onChange={(e) => setPattern(e.target.value)}
             value={pattern}
+            className = {emptyFields.includes('pattern') ? 'error': ''} 
             />
 
             <button>Add Cat</button>

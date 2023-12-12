@@ -29,6 +29,21 @@ const getCat = async (req, res) => {
 const createCat = async (req, res) => {
     const {breed, origin, pattern} = req.body
 
+    const emptyFields = []
+
+    if (!breed) {
+        emptyFields.push('breed')
+    }
+    if (!origin) {
+        emptyFields.push('origin')
+    }
+    if (!pattern) {
+        emptyFields.push('pattern')
+    }
+    if (emptyFields.length > 0) {
+        return res.status(400).json({ error: 'Please fill in all the fields', emptyFields})
+    }
+
 // add doc to db
     try {
         const cat = await Cat.create({breed, origin, pattern})
