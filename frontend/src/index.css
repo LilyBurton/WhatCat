@@ -116,3 +116,12 @@ div.error {
 input.error {
   border: 1px solid var(--error);
 }
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  margin-left: 10px;
+}

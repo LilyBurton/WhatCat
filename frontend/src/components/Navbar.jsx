@@ -10,6 +10,12 @@ const Navbar = () => {
                 <Link to='/cats'>
                     <h3>Cat Buddy</h3>
                 </Link>
+                <nav>
+                    <div>
+                        <Link to='/login'>Login</Link>
+                        <Link to='/register'>SignUp</Link>
+                    </div>
+                </nav>
             </div>
         </header>
     )
